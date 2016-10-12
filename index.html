@@ -1,0 +1,346 @@
+<html>
+    <head>
+        <title> Mirror, mirror, on the wall... </title>
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link rel="stylesheet" type="text/css" href="customcss.css">
+    </head>
+
+    <body style="padding: 2%; background-color: black;">
+        <div class="jumbotron col-md-3" style="background-color: black; color: white; text-align: center; outline: solid 0px white;">
+          <h1 id="timeHolder">Jumbotron</h1>
+
+
+ <div class='chat-wrapper'>
+
+     <style>
+     @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:300);
+html,
+body {
+  font-size: 100%;
+  font-size: 16px;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  color: #888;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 300;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.padding {
+  padding: 20px;
+}
+
+.clearfix {
+  display: table;
+  overflow: hidden;
+}
+.clearfix:before {
+  content: " ";
+  display: block;
+}
+
+.font-size-small {
+  font-size: 0.7rem;
+}
+
+.chat-wrapper {
+  width: 100%;
+  display: table;
+  overflow: hidden;
+}
+.chat-wrapper:before {
+  content: " ";
+  display: block;
+}
+.chat-wrapper .chat-content {
+  background-color: #fff;
+}
+.chat-wrapper .chat-image {
+  float: left;
+  border-radius: 50%;
+}
+.chat-wrapper .chat-image.chat-image-default {
+  width: 60px;
+  height: 60px;
+}
+.chat-wrapper .chat-message {
+  margin-bottom: 20px;
+  width: 100%;
+  display: table;
+  overflow: hidden;
+}
+.chat-wrapper .chat-message:before {
+  content: " ";
+  display: block;
+}
+.chat-wrapper .chat-message:last-of-type {
+  margin-bottom: 0;
+}
+.chat-wrapper .chat-message .chat-message-wrapper {
+  max-width: 70%;
+  display: table;
+  margin: 0 20px;
+  padding-top: 10px;
+  position: relative;
+}
+.chat-wrapper .chat-message .chat-message-wrapper:before {
+  content: " ";
+  display: block;
+  width: 0;
+  height: 0;
+  border: 12px solid transparent;
+  top: 20px;
+  position: absolute;
+  z-index: 2;
+}
+.chat-wrapper .chat-message .chat-message-wrapper p {
+  padding: 10px 20px;
+  color: #fff;
+  border-top: 1px solid;
+}
+.chat-wrapper .chat-message .chat-message-wrapper p:first-of-type {
+  border-top: 0 !important;
+}
+.chat-wrapper .chat-message.chat-message-recipient .chat-message-wrapper,
+.chat-wrapper .chat-message.chat-message-recipient .chat-message-content {
+  float: left;
+}
+.chat-wrapper .chat-message.chat-message-recipient .chat-message-wrapper:before {
+  left: -20px;
+  border-right-color: #91D98A;
+}
+.chat-wrapper .chat-message.chat-message-recipient p {
+  background-color: #91D98A;
+  border-top-color: #7dc576;
+}
+.chat-wrapper .chat-message.chat-message-sender .chat-message-wrapper,
+.chat-wrapper .chat-message.chat-message-sender .chat-message-content {
+  float: right;
+}
+.chat-wrapper .chat-message.chat-message-sender .chat-message-wrapper:before {
+  right: -20px;
+  border-left-color: #8AC0D9;
+}
+.chat-wrapper .chat-message.chat-message-sender p {
+  background: #8AC0D9;
+  border-top-color: #76acc5;
+}
+.chat-wrapper .chat-message.chat-message-sender img {
+  float: right;
+}
+.chat-wrapper .chat-message .chat-message-content {
+  display: table;
+  overflow: hidden;
+  border-radius: 4px;
+}
+.chat-wrapper .chat-message .chat-message-content:before {
+  content: " ";
+  display: block;
+}
+.chat-wrapper .chat-message .chat-details {
+  clear: both;
+  width: 100%;
+  display: table;
+  overflow: hidden;
+}
+.chat-wrapper .chat-message .chat-details:before {
+  content: " ";
+  display: block;
+}
+.chat-wrapper .chat-message .chat-details span {
+  margin-right: 4px;
+  color: #bbb;
+}
+
+     </style>
+<div style="height: 600px; overflow-y: scroll;">
+   <div class='chat-message padding'>
+
+      <div id="chatHolder">
+        <!-- <div class='chat-message chat-message-recipient'>
+           <div class='chat-message-wrapper'>
+             <div class='chat-message-content'>
+               <p>Sushi tonight?</p>
+             </div>
+           </div>
+         </div>
+
+
+         <div class='chat-message chat-message-sender'>
+           <div class='chat-message-wrapper'>
+             <div class='chat-message-content'>
+               <p>Pizza?</p>
+             </div>
+           </div>
+       </div>-->
+     </div>
+</div>
+
+   </div>
+
+ </div>
+
+        </div>
+        <div class="col-md-4 col-md-offset-5">
+            <style>
+                @main-bg:rgb(40,40,59);
+                @calendar-border:rgb(220,220,255);
+                @calendar-bg:#fff;
+                @calendar-standout:rgb(40,40,59);
+                @calendar-color:#444;
+                @calendar-fade-color:#c0c0c0;
+                @body-color:#444;
+
+                html, body {
+                height:100%;
+                color: white;
+                font-family: Century Gothic;
+                }
+                body {
+                font-size:100%;
+                line-height:1.5;
+                font-family: "Roboto Condensed", sans-serif;
+                background:@main-bg;
+                background-image:linear-gradient(@main-bg 0%, darken(@main-bg,12%) 100%);
+                color:@body-color;
+                }
+
+                *, *:before, *:after {
+                box-sizing:border-box;
+                }
+
+                .group {
+                &:after {
+                content: "";
+                display: table;
+                clear: both;
+                }
+                }
+
+                img {
+                max-width:100%;
+                height:auto;
+                vertical-align:baseline;
+                }
+
+                a {
+                text-decoration:none;
+                }
+
+                .max(@maxWidth;
+                @rules) {
+                @media only screen and (max-width: @maxWidth) {
+                  @rules();
+                }
+                }
+
+                .min(@minWidth;
+                @rules) {
+                @media only screen and (min-width: @minWidth) {
+                  @rules();
+                }
+                }
+
+
+                .calendar-wrapper {
+                width:360px;
+                margin:3em auto;
+                padding:2em;
+                border:1px solid @calendar-border;
+                border-radius:5px;
+                background:@calendar-bg;
+
+                }
+                table {
+                clear:both;
+                width:100%;
+                border:1px solid @calendar-border;
+                border-radius:3px;
+                border-collapse:collapse;
+                color:@calendar-color;
+                }
+                td {
+                height:48px;
+                text-align:center;
+                vertical-align:middle;
+                border-right:1px solid @calendar-border;
+                border-top:1px solid @calendar-border;
+                width:100% / 7;
+                }
+                td.not-current {
+                color:@calendar-fade-color;;
+                }
+                td.normal {}
+                td.today {
+                font-weight:700;
+                color:@calendar-standout;
+                font-size:1.5em;
+                background-color: white;
+                color: black;
+                }
+                thead td {
+                border:none;
+                color:@calendar-standout;
+                text-transform:uppercase;
+                font-size:1.5em;
+                }
+                #btnPrev {
+                float:left;
+                margin-bottom:20px;
+                &:before {
+                content:'\f104';
+                font-family:FontAwesome;
+                padding-right:4px;
+                }
+                }
+                #btnNext {
+                float:right;
+                margin-bottom:20px;
+                &:after {
+                content:'\f105';
+                font-family:FontAwesome;
+                padding-left:4px;
+                }
+                }
+                #btnPrev, #btnNext {
+                background:transparent;
+                border:none;
+                outline:none;
+                font-size:1em;
+                color:@calendar-fade-color;
+                cursor:pointer;
+                font-family:"Roboto Condensed", sans-serif;
+                text-transform:uppercase;
+                transition:all 0.3s ease;
+                &:hover {
+                color:@calendar-standout;
+                font-weight:bold;
+                }
+                }
+            </style>
+
+            <div class="calendar-wrapper">
+              <button id="btnPrev" type="button">Prev</button>
+            	  <button id="btnNext" type="button">Next</button>
+              <div id="divCal"></div>
+            </div>
+
+
+
+        </div>
+
+        <script src="jquery.js"></script>
+        <script src="https://connect.soundcloud.com/sdk/sdk-3.1.2.js"></script>
+        <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/annyang/2.5.0/annyang.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/SpeechKITT/0.3.0/speechkitt.min.js"></script>
+        <script src="calendar.js"></script>
+        <script src="script.js"></script>
+    </body>
+
+</html>
