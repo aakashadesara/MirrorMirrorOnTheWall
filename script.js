@@ -1,5 +1,11 @@
+var user_name = "Master";
+var keyPhrase = "mirror mirror on the wall";
+
+
+
 window.onload=function(){
 
+    getForecast();
 
     SC.initialize({
       client_id: 'YOUR_CLIENT_ID'
@@ -34,6 +40,7 @@ function setUpAnnyang(){
     if (annyang) {
       // Let's define a command.
       var commands = {
+        'keyPhrase': activateMirror,
         'hello': activateMirror,
         'mirror on the wall': activateMirror,
         'mirror mirror on the wall': activateMirror,
@@ -82,24 +89,34 @@ function deactivateMirror(){
     }
 }
 
+
+function getForecast(){
+    return( document.getElementById('calendricalInfoHolder').innerHTML + "" );
+}
+
 function funGoodbye(){
     var i = Math.random();
     if(i < .25){
-        speak("Goodbye for now Master.");
+        speak("Goodbye for now " + user_name + ".");
         setTimeout(speak, 5000);
     } else if (i < .5){
-        speak("No problem. Talk to you soon.");
+        speak("No problem" + user_name + ". Talk to you soon.");
         setTimeout(speak, 5000);
     } else if (i < .75){
         speak("I hope the rest of your day is pleasant!");
         setTimeout(speak, 5000);
     } else {
-        speak("Have a hashtag SOLID day!");
+        speak("Have a hashtag SOLID day " + user_name + "!");
         setTimeout(speak, 5000);
     }
 }
 
 function tagger(tag){
+    if (tag.includes("be quiet") || tag.includes("go away") || tag.includes("shut up")){
+        $("#iframesong").attr('src', "");
+        setTimeout(speak, sampleString.length * 125 + 4000);
+        mirrorActive = false
+    }
     //console.log("User said: " + tag);
     if (mirrorActive){
         $("#chatHolder").html("<div class=\'chat-message chat-message-sender\'><div class=\'chat-message-wrapper\'><div class=\'chat-message-content\'><p>" + tag + "</p></div></div></div>" + $("#chatHolder").html());
@@ -108,16 +125,16 @@ function tagger(tag){
             setTimeout(speak, 5000);
             mirrorActive = false;
         } else if (tag.includes("weather")) {
-            console.log("WEATHER");
-            speak("It is going to be slightly cloudy. Perhaps wear some layers");
+            speak(getForecast());
             setTimeout(speak, 5000);
             mirrorActive = false;
         } else if ((tag.includes("orchestra") || tag.includes("music")) && tag.includes("play")){
             speak("which symphony do you desire?");
             setTimeout(speak, 5000);
             mirrorActive = false;
-        } else if (tag.includes("can you play")){
+        } else if (tag.includes("can you play") || tag.includes("play")){
             speak("sure, I will play " + tag.substring((tag.indexOf("can you play") + 13), tag.length));
+            playSong(tag.substring((tag.indexOf("can you play") + 12)).toLowerCase());
             setTimeout(speak, 5000);
             mirrorActive = false;
         } else if (tag == "drop a sick beat"){
@@ -141,6 +158,14 @@ function tagger(tag){
             speak(philosophy());
             setTimeout(speak, 5000);
             mirrorActive = false;
+        } else if (tag.includes("call me")){
+            setName(tag);
+            speak("Okay, I shall call you " + user_name);
+            mirrorActive = false;
+        } else if ((tag.includes("what's") || tag.includes("what is")) && tag.includes("name")){
+            speak("Your name is " + user_name +".");
+            setTimeout(speak, sampleString.length * 125 + 4000);
+            mirrorActive = false
         } else if (tag == "what can you not respond to"){
             var sampleString = "";
             for(var i = 0; i < arrUnknown.length; i++){
@@ -152,8 +177,29 @@ function tagger(tag){
             mirrorActive = false;
 
         }else {
-            console.log("ADDED: " + tag);
-            arrUnknown.push(tag);
+            speak(hardcoded(tag));
+
+        }
+    }
+}
+
+
+function setName(tag){
+    user_name = tag.substring(tag.indexOf("call me") + 8);
+}
+
+function playSong(song){
+    console.log("play song activated: " + song);
+    var arr = [["beethoven", "8ptfyhBjXj8"],
+                ["vivaldi",  "O6NRLYUThrY"],
+                ["closer", "PT2_F-1esPk"],
+                ["shut up and dance", "6JCLY0Rlx6Q"],
+                ["bangarang", "YJVmu6yttiw"]];
+
+    for(var i = 0; i < arr.length; i++){
+        if(song.includes(arr[i][0])){
+            console.log("song found");
+            $("#iframesong").attr('src', "https://www.youtube.com/embed/" + arr[i][1] + "?autoplay=1");
         }
     }
 
@@ -186,7 +232,7 @@ function checkTime(i) {
 function randomGreeting(){
     var i = Math.random();
     if(i < .25){
-        speak("Yes master, what may I do for you?");
+        speak("Yes " + user_name + ", what may I do for you?");
         setTimeout(speak, 5000);
     } else if (i < .5){
         speak("Greetings! How may I assist you?");
@@ -338,4 +384,28 @@ function philosophy(){
                 "Hopping over the cloudy moon to help the bro catch ants.",
                 "Crack em open for the watermelon slices."];
     return arr[Math.floor(Math.random() * arr.length)];
+}
+
+function hardcoded(tag){
+    var arr = [["what are you", "I am your mirror.", "I am a reflection of yourself."],
+               ["hallelujah", "Yipeedee yay!", "Awesome! I am glad you are happy!"],
+               ["stupid", "Stupid is not a very kind word.", "Stupid is a word for stupid people."],
+               ["joke", "Look into your eyes, then laugh.", "The bird at the worm."],
+               ["idea", "I suggest you Google that.", "Interesting concept!"],
+               ["look up", "I am your mirror, not Google.", "Please inspect an encyclopedia."]];
+
+    for(var i = 0; i < arr.length; i++){
+        if(tag.toLowerCase().includes(arr[i][0])){
+            var rand = Math.random() * 10;
+            if(rand < 5){
+                return arr[i][1];
+            } else {
+                return arr[i][2];
+            }
+        }
+    }
+
+    console.log("ADDED: " + tag);
+    arrUnknown.push(tag);
+
 }
